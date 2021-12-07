@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+  </head>
+  <body>
+    <p onClick="toggleTitle()">×BREAK×DOWN×</p>
+
+    <script>
+      const dogs = [
+        { name: "Snickers", age: 2 },
+        { name: "hugo", age: 8 },
+      ];
+
+      function toggleTitle() {
+        const p = document.querySelector("p");
+        if (p.style.color === "rgb(186, 218, 85)") {
+          makeRed(p);
+        } else {
+          makeGreen(p);
+        }
+      }
+
+      function makeGreen(p) {
+        p.style.color = "#BADA55";
+        p.style.fontSize = "50px";
+      }
+
+      function makeRed(p) {
+        p.style.color = "#f20707";
+        p.style.fontSize = "50px";
+      }
+
+      // Regular
+      console.log("console.log() 사용");
+
+      // Interpolated
+      console.log("안녕, 나는 귀여운 %s", "🐣");
+
+      // Styled
+      console.log("%c 나는 샐리를 좋아해!", "font-size: 20px; color: orange;");
+
+      // warning!
+      console.warn("🚨경고🚨");
+
+      // Error :|
+      console.error("❌에러❌");
+
+      // Info
+      console.info("내 블로그 주소 >> https://velog.io/@carmine");
+
+      // Testing
+      const p = document.querySelector("p");
+      console.assert(1 === 1, "⭕");
+      console.assert(1 === 2, "❌");
+      console.assert(
+        p.getAttribute("onClick") === "makeRed()",
+        "이벤트는 makeRed()가 아닙니다."
+      );
+
+      // clearing
+      console.clear();
+
+      // Viewing DOM Elements
+      console.log(p);
+      console.dir(p);
+
+      // Grouping together
+      dogs.forEach((dog) => {
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.groupEnd(`${dog.name}`);
+      });
+
+      // counting
+      console.count("sally");
+      console.count("sally");
+      console.count("muzi");
+      console.count("sally");
+      console.count("muzi");
+      console.count("sally");
+
+      // timing
+      console.time("fetch data");
+      fetch("https://api.github.com/users/wesbos")
+        .then((data) => data.json())
+        .then((data) => {
+          console.timeEnd("fetch data");
+          console.table(data);
+        });
+    </script>
+  </body>
+</html>
